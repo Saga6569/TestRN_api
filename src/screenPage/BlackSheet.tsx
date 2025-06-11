@@ -47,8 +47,7 @@ const BlackSheet = () => {
             <TouchableOpacity
               key={user.id}
               onPress={() => {
-                // navigation.navigate('PeopleDetail', {id: user.id});
-                // dispatch(findUser(user.id));
+                navigation.navigate('PeopleDetail', {id: user.id});
               }}
               className="bg-gray-800 rounded-lg p-4 mb-4 flex-row items-center active:opacity-70">
               <Image

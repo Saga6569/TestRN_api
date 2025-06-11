@@ -47,7 +47,7 @@ const WhiteSheet = () => {
             <TouchableOpacity
               key={user.id}
               onPress={() => {
-                navigation.goBack();
+                navigation.navigate('PeopleDetail', {id: user.id});
               }}
               className="bg-gray-800 rounded-lg p-4 mb-4 flex-row items-center active:opacity-70">
               <Image
