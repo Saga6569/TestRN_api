@@ -8,7 +8,7 @@ import {useSelector} from 'react-redux';
 import {RootState} from '../store/store';
 
 type RootStackParamList = {
-  Главное: undefined;
+  Home: undefined;
   PeopleDetail: {id: string};
 };
 
@@ -30,7 +30,7 @@ const BlackSheet = () => {
 
         <TouchableOpacity
           onPress={() => {
-            navigation.navigate('Главное');
+            navigation.navigate('Home');
           }}>
           <Text className="text-blue-500 text-lg">Перейти на главную</Text>
         </TouchableOpacity>

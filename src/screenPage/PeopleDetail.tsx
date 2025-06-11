@@ -36,7 +36,7 @@ const PeopleDetail = ({route}: {route: {params: {id: string}}}) => {
   if (!currentUser) {
     return (
       <View className="flex-1 bg-gray-700 items-center justify-center">
-        <Text className="text-white text-lg">Ищем данные пользователя...</Text>
+        <Text className="text-white text-lg">Loading user data...</Text>
       </View>
     );
   }
@@ -90,7 +90,7 @@ const PeopleDetail = ({route}: {route: {params: {id: string}}}) => {
           </View>
 
           <View className="mb-6 flex-row items-center gap-10">
-            <Text className="text-gray-400 text-sm mb-1">Люимый Цвет</Text>
+            <Text className="text-gray-400 text-sm mb-1">Любимый Цвет</Text>
             <View className="flex-row items-center">
               <View
                 style={{backgroundColor: currentUser.Color}}
@@ -131,7 +131,7 @@ const PeopleDetail = ({route}: {route: {params: {id: string}}}) => {
           <TextInput
             className="bg-transparent border border-white rounded-lg color-white"
             multiline={true}
-            placeholder="Добавьте коментарий"
+            placeholder="Добавьте комментарий"
             placeholderTextColor="#888"
             numberOfLines={10}
             value={currentUser.Comment}
