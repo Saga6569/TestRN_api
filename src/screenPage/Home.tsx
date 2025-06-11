@@ -1,45 +1,46 @@
 import React from 'react';
-import {View, Text} from 'react-native';
-import {useMovies} from '../api/images';
-import RenderItemsList from '../components/RenderItemsList';
+import {View, Text, Image, ScrollView, TouchableOpacity} from 'react-native';
+import {User} from '../api/users';
+import {useNavigation} from '@react-navigation/native';
+import {NativeStackNavigationProp} from '@react-navigation/native-stack';
+// import {findUser} from '../slice/getUserDetail';
+import {useSelector} from 'react-redux';
+import {RootState} from '../store/store';
+
+type RootStackParamList = {
+  Home: undefined;
+  PeopleDetail: {id: string};
+};
+
+type NavigationProp = NativeStackNavigationProp<RootStackParamList>;
 
 const Home = () => {
-  const {
-    data,
-    isLoading,
-    error,
-    fetchNextPage,
-    hasNextPage,
-    isFetchingNextPage,
-  } = useMovies();
+  const state = useSelector((state: RootState) => state.users);
+  const navigation = useNavigation<NavigationProp>();
 
-  if (isLoading) {
-    return (
-      <View className="flex-1 bg-gray-700 items-center justify-center">
-        <Text className="text-white text-lg">Загрузка...</Text>
-      </View>
-    );
-  }
-
-  if (error) {
-    return (
-      <View className="flex-1 bg-gray-700 items-center justify-center">
-        <Text className="text-red-500 text-lg">Ошибка загрузки</Text>
-      </View>
-    );
-  }
+  // const dispatch = useDispatch();
 
   return (
-    <View className="flex-1 bg-gray-700 p-4">
-      <RenderItemsList
-        data={data}
-        isLoading={isLoading}
-        error={error}
-        fetchNextPage={fetchNextPage}
-        hasNextPage={hasNextPage}
-        isFetchingNextPage={isFetchingNextPage}
-      />
-    </View>
+    <ScrollView className="flex-1 bg-gray-700">
+      <View className="p-4">
+        {state.users.map((user: User) => (
+          <TouchableOpacity
+            key={user.id}
+            onPress={() => {
+              navigation.navigate('PeopleDetail', {id: user.id});
+            }}
+            className="bg-gray-800 rounded-lg p-4 mb-4 flex-row items-center active:opacity-70">
+            <Image
+              source={{uri: user.avatar}}
+              className="w-20 h-20 rounded-full"
+            />
+            <Text className="text-white text-lg ml-4 flex-1 text-left">
+              {user.name}
+            </Text>
+          </TouchableOpacity>
+        ))}
+      </View>
+    </ScrollView>
   );
 };
 
