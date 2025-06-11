@@ -25,7 +25,7 @@ const BlackSheet = () => {
     return (
       <View className="flex-1 bg-gray-700 items-center justify-center">
         <Text className="text-white text-lg pb-10">
-          У вас нет пользователей в избранном
+          У вас нет пользователей в черном списке
         </Text>
 
         <TouchableOpacity
